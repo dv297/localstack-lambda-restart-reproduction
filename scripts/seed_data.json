@@ -1,0 +1,19 @@
+{
+  "TableName": [
+        {
+      "PutRequest": {
+        "Item": {
+          "pk": {
+            "S": "SAMPLE_PK"
+          },
+          "sk": {
+            "S": "SAMPLE_SK"
+          },
+          "Description": {
+            "S": "Sample Data"
+          }
+        }
+      }
+    }
+  ]
+}

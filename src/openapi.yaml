@@ -1,0 +1,134 @@
+openapi: 3.0.3
+info:
+  title: Test API
+  version: 1.0.0
+  license:
+    name: proprietary
+
+paths:
+  /minimal_service:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/sampledata'
+          description: Successful response - returns an array of `sampledata` entities.
+      operationId: getrealms
+      x-amazon-apigateway-integration:
+        credentials: ${gateway_iam_role_arn}
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/${minimal_service_arn}/invocations"
+        responses:
+          default:
+            statusCode: "302"
+          "400":
+            statusCode: "400"
+          "500":
+            statusCode: "500"
+        passthroughBehavior: "when_no_match"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws_proxy"
+
+  /service_a:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/sampledata'
+          description: Successful response - returns an array of `sampledata` entities.
+      operationId: getrealms
+      x-amazon-apigateway-integration:
+        credentials: ${gateway_iam_role_arn}
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/${lambda_a_arn}/invocations"
+        responses:
+          default:
+            statusCode: "302"
+          "400":
+            statusCode: "400"
+          "500":
+            statusCode: "500"
+        passthroughBehavior: "when_no_match"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws_proxy"
+
+  /service_b:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/sampledata'
+          description: Successful response - returns an array of `sampledata` entities.
+      operationId: getrealms
+      x-amazon-apigateway-integration:
+        credentials: ${gateway_iam_role_arn}
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/${lambda_b_arn}/invocations"
+        responses:
+          default:
+            statusCode: "302"
+          "400":
+            statusCode: "400"
+          "500":
+            statusCode: "500"
+        passthroughBehavior: "when_no_match"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws_proxy"
+
+  /service_c:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/sampledata'
+          description: Successful response - returns an array of `sampledata` entities.
+      operationId: getrealms
+      x-amazon-apigateway-integration:
+        credentials: ${gateway_iam_role_arn}
+        httpMethod: "POST"
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/${lambda_c_arn}/invocations"
+        responses:
+          default:
+            statusCode: "302"
+          "400":
+            statusCode: "400"
+          "500":
+            statusCode: "500"
+        passthroughBehavior: "when_no_match"
+        contentHandling: "CONVERT_TO_TEXT"
+        type: "aws_proxy"
+
+components:
+  schemas:
+    sampledata:
+      title: Sample data
+      description: Sample data
+      required:
+        - id
+      type: object
+      properties:
+        pk:
+          maxLength: 64
+          type: string
+        sk:
+          maxLength: 1024
+          type: string
+        Description:
+          maxLength: 64
+          type: string

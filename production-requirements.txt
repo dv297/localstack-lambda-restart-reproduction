@@ -1,0 +1,4 @@
+# These dependencies are needed for the Lambda to run. Dependencies that only exist for quality checks or local
+# development should be kept in dev-requirements.txt
+
+aws-lambda-powertools[all]
