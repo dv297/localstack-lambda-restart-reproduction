@@ -10,6 +10,6 @@ pyenv local 3.11
 # Spin up application in LocalStack
 cd terraform
 terraform init
-localstack start -D
+localstack start -d
 tflocal apply --var "stack_name=local" --var "is_localstack_deploy=true" -auto-approve
 ```
